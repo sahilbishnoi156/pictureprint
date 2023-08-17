@@ -11,13 +11,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div>{children}</div>
+      <body className={`${inter.className} h-screen w-screen box-border`}>
+        <div className="h-screen w-screen">{children}</div>
         <script
           src="https://kit.fontawesome.com/f8f9825bbd.js"
           crossOrigin="anonymous"
           as="script"
-        ></script>\
+        ></script>
         <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>
