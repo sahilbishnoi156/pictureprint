@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ShowImage from "./ShowImage";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [input_url, setInput_url] = useState("");
@@ -9,7 +10,7 @@ export default function Home() {
   const [imageLoading, setImageLoading] = useState(false);
   const [topBanner, setTopBanner] = useState(true);
   const [filename, setFilename] = useState("");
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
   const [showImagePreview, setShowImagePreview] = useState(false);
 
   const handleImageLook = () => {
@@ -162,9 +163,12 @@ export default function Home() {
            {imagePreview && <span className="text-center uppercase text-xs" id="preview_txt">
               Click to preview <br /> &darr;
             </span>}
-            <img
+            <Image
               src={imagePreview}
+              loader={({src})=>`${src}`}
               alt="none"
+              width={1000}
+              height={1000}
               onLoad={()=>setImageLoading(false)}
               className={`h-52 w-52 rounded-full bg-white object-${imageLook} cursor-pointer`}
               onClick={() => {

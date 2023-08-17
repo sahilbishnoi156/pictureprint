@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function ShowImage({
@@ -5,6 +6,9 @@ export default function ShowImage({
   showImagePreview,
   setShowImagePreview,
 }) {
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}/`
+  }
   const handleImageClose = () => {
     if (showImagePreview) {
       setShowImagePreview(false);
@@ -27,8 +31,11 @@ export default function ShowImage({
         className="w-3/4 h-3/4 bg-black border-2 rounded-xl"
         onBlur={handleImageClose}
       >
-        <img
+        <Image
           src={image_url}
+          loader={imageLoader}
+          width={1000}
+          height={1000}
           alt="Notfound"
           className="object-contain h-full w-full"
         />

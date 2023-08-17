@@ -12,10 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <div>{children}</div>
         <script
           src="https://kit.fontawesome.com/f8f9825bbd.js"
           crossOrigin="anonymous"
+          as="script"
         ></script>
       </body>
     </html>
