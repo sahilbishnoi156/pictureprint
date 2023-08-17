@@ -25,3 +25,20 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+#img-background{
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+}
+#preview_txt{
+  animation: moving 1s ease-in-out infinite alternate;
+  transition: .2s;
+}
+@keyframes moving {
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(-55%);
+  }
+}
