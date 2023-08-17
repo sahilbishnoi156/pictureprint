@@ -17,7 +17,8 @@ export default function RootLayout({ children }) {
           src="https://kit.fontawesome.com/f8f9825bbd.js"
           crossOrigin="anonymous"
           as="script"
-        ></script>
+        ></script>\
+        <script src="https://cdn.tailwindcss.com"></script>
       </body>
     </html>
   );
