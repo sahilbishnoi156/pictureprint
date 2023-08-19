@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Rubik+Wet+Paint&family=Shadows+Into+Light&display=swap');
+
+#main-div{
+    font-family: 'Rubik Wet Paint', cursive;
+    background-image: url("/background_image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

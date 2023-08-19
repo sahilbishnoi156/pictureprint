@@ -7,7 +7,7 @@ export default function ShowImage({
   setShowImagePreview,
 }) {
   const imageLoader = ({ src, width, quality }) => {
-    return `${src}/`
+    return `${src}`
   }
   const handleImageClose = () => {
     if (showImagePreview) {
