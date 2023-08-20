@@ -26,19 +26,22 @@ export default function Home() {
     setImagePreview(input_url);
   };
   const imageDownload = async () => {
-    setImageLoading(true);
     if (input_url.includes("youtube")) {
       const downloadUrl = input_url;
       window.location.href = downloadUrl;
     } else {
       if (input_url) {
         fetch(input_url)
-          .then((response) => response.blob())
-          .then((response) => response.blob())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.blob();
+          })
           .then((blob) => {
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
-            link.download = `${filename.split(".")[0]}.jpg` || "my_image.jpg";
+            link.download = `${filename.split(".")[0] || "my_image"}.jpg` ;
             link.click();
             window.URL.revokeObjectURL(link.href);
           })

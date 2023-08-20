@@ -105,7 +105,7 @@ export default function Page() {
       }
 
       // Save the PDF document to the local file system.
-      pdf.save(`${pdfFileName.split(".")[0]}.pdf`);
+      pdf.save(`${pdfFileName.split(".")[0] || "My_pdf"}.pdf`);
     } catch (error) {
       console.error("Error converting images to PDF:", error);
     }
@@ -225,7 +225,7 @@ export default function Page() {
         </div>
         <div className="w-1/2 flex items-center justify-center">
           <button
-            className="p-2 px-8 bg-white rounded-full text-slate-700 hover:bg-pink-400 hover:text-white text-xl hover:scale-110 transition-all font-semibold"
+            className="p-2 px-8 bg-white rounded-full text-slate-700 hover:bg-pink-400 hover:text-white text-xl hover:scale-110 transition-all font-bold"
             onClick={handlePdfConvert}
             onMouseOver={() => setInit_scale(3)}
             onMouseLeave={() => setInit_scale(1)}
