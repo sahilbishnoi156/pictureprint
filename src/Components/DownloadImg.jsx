@@ -4,7 +4,7 @@ import ShowImage from "./ShowImage";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export default function DownloadImg() {
   const [input_url, setInput_url] = useState("");
   const [imageLook, setImageLook] = useState("contain");
   const [imageLoading, setImageLoading] = useState(false);

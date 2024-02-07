@@ -1,5 +1,5 @@
 "use client";
-import ShowImage from "@/Components/ShowImage";
+import ShowImage from "@/components/ShowImage";
 import jsPDF from "jspdf";
 import Link from "next/link";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import React from "react";
-import ImageToPdf from "@/Components/ImageToPdf";
+import ImageToPdf from "@/components/ImageToPdf";
 
 export default function page() {
   return (
