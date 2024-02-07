@@ -47,8 +47,6 @@ export default function ImageToPdf() {
     try {
       // Create a new PDF document.
       const pdf = new jsPDF();
-
-      // Loop through each image and add it to the PDF.
       for (let i = 0; i < imageFiles.length; i++) {
         const image = imageFiles[i];
         const imgData = await getImageDataUrl(image); // Convert image to Data URL
@@ -60,13 +58,13 @@ export default function ImageToPdf() {
           img.onload = () => {
             const imgWidth = img.width; // Get the original width of the image
             const imgHeight = img.height; // Get the original height of the image
-
+            pdf.setFillColor('blue')
             // Calculate the aspect ratio of the image
             const aspectRatio = imgWidth / imgHeight;
 
             // Set the maximum width and height for the image in the PDF
-            const maxWidth = 200; // Set your desired maximum width
-            const maxHeight = 280; // Set your desired maximum height
+            const maxWidth = 300; // Set your desired maximum width
+            const maxHeight = 380; // Set your desired maximum height
 
             // Calculate the new width and height to fit within the maximum dimensions while maintaining aspect ratio
             let newWidth, newHeight;
@@ -78,17 +76,12 @@ export default function ImageToPdf() {
               newWidth = maxHeight * aspectRatio;
             }
 
-            // Calculate the position to center the image
-            const xPosition = (pdf.internal.pageSize.getWidth() - newWidth) / 2;
-            const yPosition =
-              (pdf.internal.pageSize.getHeight() - newHeight) / 2;
-
             // Add the image to the PDF using the calculated dimensions and position
             pdf.addImage(
               imgData,
               "JPEG",
-              xPosition,
-              yPosition,
+              0,
+              0,
               newWidth,
               newHeight
             );
@@ -125,10 +118,7 @@ export default function ImageToPdf() {
   return (
     <div className="min-h-[90vh] w-full flex items-center justify-evenly flex-col dark:bg-[#151515] bg-white py-8">
       <div className="text-blue-500 md:text-6xl text-2xl flex items-center justify-between md:w-3/4 md:px-16 px-4 gap-8 mb-4">
-        <Link
-          href="/"
-          className="md:text-4xl hover:scale-105 transition-all"
-        >
+        <Link href="/" className="md:text-4xl hover:scale-105 transition-all">
           <i className="fa-solid fa-arrow-left-long"></i>
         </Link>
         <span> Image to Pdf</span>
@@ -162,9 +152,7 @@ export default function ImageToPdf() {
                 <span className="font-semibold">Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-xs ">
-                SVG, PNG, JPG or GIF
-              </p>
+              <p className="text-xs ">SVG, PNG, JPG or GIF</p>
             </div>
             <input
               type="file"
@@ -198,11 +186,15 @@ export default function ImageToPdf() {
           ) : (
             <></>
           )}
-          <ol type="1" className="h-48 overflow-auto list-decimal text-black dark:text-white">
+          <ol
+            type="1"
+            className="h-48 overflow-auto list-decimal text-black dark:text-white"
+          >
             {imageFiles.map((file, index) => {
               return (
                 <li key={file.name} id={file.name}>
-                  <span className="mr-2">{index+1}.</span><button onClick={handleLinkClick}>{file.name}</button>
+                  <span className="mr-2">{index + 1}.</span>
+                  <button onClick={handleLinkClick}>{file.name}</button>
                 </li>
               );
             })}

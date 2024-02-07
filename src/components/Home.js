@@ -6,9 +6,9 @@ export default function Home() {
     <div className=" flex flex-col items-center justify-center bg-white dark:bg-[#151515] text-black dark:text-white md:py-40 py-12">
       <h1 className="text-[10vw] text-center mb-2 md:text-[5vw]" id="heading">PICTURE PRINT</h1>
       <p className="w-2/3 text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse vitae
-        animi quasi unde error, nostrum eaque porro minus inventore repudiandae
-        similique voluptates reiciendis,
+      Unlock the power of image customization with Picture Print. 
+      Download high-quality images and craft stunning PDFs, 
+      all in one place. Your creative journey starts here!
       </p>
       <Link
         href={"/image_to_pdf"}
