@@ -1,10 +1,8 @@
-import DownloadImg from '@/components/DownloadImg.jsx'
+import DownloadImg from '@/components/DownloadImg'
 import React from 'react'
-
 
 export default function page() {
   return (
     <DownloadImg/>
-  
   )
 }
