@@ -2,12 +2,10 @@
 import { useState } from "react";
 import ShowImage from "./ShowImage";
 import Link from "next/link";
-import MouseTracker from "./MouseTracker";
 import Image from "next/image";
 
 export default function Home() {
   const [input_url, setInput_url] = useState("");
-  const [init_scale, set_init_scale] = useState(1);
   const [imageLook, setImageLook] = useState("contain");
   const [imageLoading, setImageLoading] = useState(false);
   const [filename, setFilename] = useState("");
@@ -34,14 +32,14 @@ export default function Home() {
         fetch(input_url)
           .then((response) => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw new Error("Network response was not ok");
             }
             return response.blob();
           })
           .then((blob) => {
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
-            link.download = `${filename.split(".")[0] || "my_image"}.jpg` ;
+            link.download = `${filename.split(".")[0] || "my_image"}.jpg`;
             link.click();
             window.URL.revokeObjectURL(link.href);
           })
@@ -51,31 +49,18 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="h-screen w-screen flex flex-col items-center justify-center gap-16 p-16 bg-transparent font-extrabold text-gray-400"
-      id="download_img_background"
-    >
-      <MouseTracker def_initScale={init_scale} />
-      <div className="h-screen w-screen absolute top-0 left-0 backdrop-blur-md "></div>
-      {showImagePreview ? (
+    <div className="h-screen w-screen flex flex-col items-center justify-center gap-16 p-16 bg-transparent dark:bg-[#151515] bg-white text-black dark:text-white">
+      {showImagePreview && (
         <ShowImage
           image_url={imagePreview}
           setShowImagePreview={setShowImagePreview}
           showImagePreview={showImagePreview}
         />
-      ) : (
-        <></>
       )}
-      <div
-        className="flex flex-col items-center justify-between w-full h-full bg-transparent rounded-2xl relative z-40 p-4 "
-        id="download_img_background_inner"
-      >
-        <div className="text-pink-500 text-6xl flex items-center justify-between w-full px-16 ">
-          <Link
-            href="/"
-            className="text-4xl font-bold hover:scale-125 transition-all"
-          >
-            &larr;
+      <div className="flex flex-col items-center justify-between w-full h-full bg-transparent rounded-2xl relative z-40 p-4 ">
+        <div className="text-6xl flex items-center justify-between w-full px-16 text-blue-500">
+          <Link href="/" className="text-4xl hover:scale-125 transition-all">
+            <i className="fa-solid fa-arrow-left-long"></i>
           </Link>
           <span> Download Your Image</span>
           <span>‎</span>
@@ -83,42 +68,39 @@ export default function Home() {
         <div className="w-full h-full flex justify-around items-center">
           <div className="w-3/4 flex flex-col items-start justify-center gap-12 text-2xl px-8 ">
             <div className="w-3/4">
-              <p className="">
-                Lorem, ipsum dolor sit amet <span className="text-pink-500 underline ">consectetur</span> adipisicing elit.
-                Dolorum, repellat! Lorem ipsum dolor sit amet.
+              <p className="text-black dark:text-white">
+                Lorem, ipsum dolor sit amet{" "}
+                <span className=" underline text-blue-500">consectetur</span>{" "}
+                adipisicing elit. Dolorum, repellat! Lorem ipsum dolor sit amet.
               </p>
             </div>
             <div className="w-3/4 flex flex-col gap-8">
               <label
                 htmlFor="image_input"
-                className="h-10 w-full rounded-full px-4 bg-white flex items-center justify-center gap-4 text-sm"
+                className="h-10 w-full rounded-full px-4 flex items-center justify-center gap-4 text-sm text-black dark:text-white"
               >
-                <span className="text-gray-700 border-r-2 border-black w-20">
+                <span className="border-r-2 border-black w-20 text-black dark:text-white">
                   Link :
                 </span>
                 <input
                   type="text"
                   id="image_input"
-                  onMouseOver={() => set_init_scale(0)}
-                onMouseLeave={() => set_init_scale(1)}
-                  className="h-full w-full text-gray-700 bg-transparent outline-none"
+                  className=" text-black h-full w-full bg-gray-400 py-1 px-2 rounded-2xl dark:text-white  outline-none "
                   value={input_url}
                   onChange={(e) => setInput_url(e.target.value)}
                 />
               </label>
               <label
                 htmlFor="image_input"
-                className="h-10 w-full rounded-full px-4 bg-white flex items-center justify-center gap-4 text-sm"
+                className="h-10 w-full rounded-full px-4 flex items-center justify-center gap-4 text-sm text-black dark:text-white"
               >
-                <span className="text-gray-700 border-r-2 border-black w-20">
+                <span className="border-r-2 border-black w-20 text-black dark:text-white">
                   Name :
                 </span>
                 <input
                   type="text"
-                  onMouseOver={() => set_init_scale(0)}
-                onMouseLeave={() => set_init_scale(1)}
                   id="image_input"
-                  className="h-full w-full text-gray-700 bg-transparent outline-none"
+                  className=" text-black h-full w-full bg-gray-400 py-1 px-2 rounded-2xl dark:text-white  outline-none "
                   value={filename}
                   onChange={(e) => setFilename(e.target.value)}
                 />
@@ -126,27 +108,25 @@ export default function Home() {
             </div>
             <div className="w-3/4 flex justify-evenly items-center gap-8">
               <button
-                onMouseOver={() => set_init_scale(3)}
-                onMouseLeave={() => set_init_scale(1)}
-                className={`text-xl hover:text-white hover:text-lg rounded-full py-1 px-4 w-2/5 text-gray-700 text-center ${
-                  input_url ? "bg-white" : "bg-slate-400 cursor-default"
-                } hover:scale-110 transition hover:bg-pink-400`}
+                className={`text-xl px-6 py-1 bg-blue-500 text-white rounded-xl ${
+                  input_url.length === 0 && "disabled:bg-gray-500"
+                }`}
+                disabled={input_url.length === 0}
                 onClick={imageDownload}
               >
                 Download
               </button>
               <button
-                onMouseOver={() => set_init_scale(3)}
-                onMouseLeave={() => set_init_scale(1)}
-                className="text-xl hover:text-white hover:text-lg rounded-full bg-white py-1 px-4 w-2/5 text-gray-700 text-center hover:scale-110 transition hover:bg-pink-400"
+                className={`text-xl px-6 py-1 bg-blue-500 text-white rounded-xl ${
+                  input_url.length === 0 && "disabled:bg-gray-500"
+                }`}
+                disabled={input_url.length === 0}
                 onClick={imagePreviewHandle}
               >
                 Preview
               </button>
               <button
-                onMouseOver={() => set_init_scale(3)}
-                onMouseLeave={() => set_init_scale(1)}
-                className="text-xl hover:text-white hover:text-lg rounded-full bg-white py-1 px-4 w-2/5 text-gray-700 text-center hover:scale-110 transition hover:bg-pink-400"
+                className={`text-xl px-6 py-1 bg-blue-500 text-white rounded-xl`}
                 onClick={() => {
                   setImageLoading(true);
                   let URL = `https://picsum.photos/${
@@ -168,34 +148,37 @@ export default function Home() {
             )}
             {imagePreview && (
               <span
-                className="text-center uppercase text-xs text-white"
+                className="text-center uppercase text-xs text-black dark:text-white   "
                 id="preview_txt"
               >
                 Click to preview <br /> &darr;
               </span>
             )}
-            <div className="h-52 w-52 rounded-full p-1 border-2">
-            <Image
-              src={imagePreview || "https://static.vecteezy.com/system/resources/thumbnails/009/171/100/small/demo-symbol-concept-words-demo-on-wooden-blocks-photo.jpg"}
-              loader={({ src }) => `${src}`}
-              alt="none"
-              width={1000}
-              height={1000}
-              onLoad={() => setImageLoading(false)}
-              className={`h-full w-full rounded-full bg-white text-white object-${imageLook} cursor-pointer`}
-              onClick={() => {
-                if (imagePreview) {
-                  if (showImagePreview) {
-                    setShowImagePreview(false);
-                  } else {
-                    setShowImagePreview(true);
-                  }
+            <div className="h-52 w-52 rounded-full p-1 border-2 border-black">
+              <Image
+                src={
+                   !imageLoading && (imagePreview ||
+                  "https://static.vecteezy.com/system/resources/thumbnails/009/171/100/small/demo-symbol-concept-words-demo-on-wooden-blocks-photo.jpg")
                 }
-              }}
-            />
+                loader={({ src }) => `${src}`}
+                alt="none"
+                width={1000}
+                height={1000}
+                onLoad={() => setImageLoading(false)}
+                className={`h-full w-full rounded-full bg-white text-white object-${imageLook} cursor-pointer`}
+                onClick={() => {
+                  if (imagePreview) {
+                    if (showImagePreview) {
+                      setShowImagePreview(false);
+                    } else {
+                      setShowImagePreview(true);
+                    }
+                  }
+                }}
+              />
             </div>
             <button
-              className="rounded-full bg-white py-1 px-4 text-gray-700 text-center"
+              className="rounded-full bg-blue-500 py-1 px-4 text-white hover:bg-blue-700"
               onClick={handleImageLook}
             >
               Change Look

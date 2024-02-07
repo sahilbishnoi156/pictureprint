@@ -18,24 +18,23 @@ export default function ShowImage({
   };
   return (
     <div
-      className="h-screen w-screen fixed top-0 left-0 bg-white z-50 flex items-center justify-center"
-      id="img-background"
+      className="h-screen w-screen fixed top-0 left-0  z-50 flex items-center justify-center backdrop-blur-sm bg-black/30"
     >
       <div
         className="absolute top-0 right-0 m-8 cursor-pointer"
         onClick={handleImageClose}
       >
-        <i className="fa-solid fa-xmark text-white text-4xl"></i>
+        <i className="fa-solid fa-xmark text-4xl text-white"></i>
       </div>
       <div
-        className="w-3/4 h-3/4 bg-black border-2 rounded-xl"
+        className="w-3/4 h-3/4 rounded-xl relative"
         onBlur={handleImageClose}
       >
         <Image
           src={image_url}
           loader={imageLoader}
-          width={1000}
-          height={1000}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Notfound"
           className="object-contain h-full w-full"
         />

@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Rubik+Wet+Paint&family=Shadows+Into+Light&display=swap');
 
-#main-div{
+#heading{
     font-family: 'Rubik Wet Paint', cursive;
-    background-image: url("/background_image.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(
+        to right,
+        #7953cd 20%,
+        #00affa 30%,
+        #0190cd 70%,
+        #764ada 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
+@keyframes textShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }

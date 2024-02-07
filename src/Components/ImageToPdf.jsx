@@ -10,7 +10,6 @@ export default function Page() {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [pdfFileName, setPdfFileName] = useState("");
   const [imageLink, setImageLink] = useState("");
-  const [init_scale, setInit_scale] = useState(1);
 
   // Handling Image Uploading
   const handleImageChange = (e) => {
@@ -125,28 +124,28 @@ export default function Page() {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-evenly flex-col relative z-10">
-      <div className="text-pink-500 text-6xl flex items-center justify-between w-3/4 px-16 ">
+    <div className="h-full w-full flex items-center justify-evenly flex-col dark:bg-[#151515] bg-white">
+      <div className="text-blue-500 text-6xl flex items-center justify-between w-3/4 px-16 ">
         <Link
           href="/"
-          className="text-4xl font-bold hover:scale-125 transition-all"
+          className="text-4xl hover:scale-105 transition-all"
         >
-          &larr;
+          <i className="fa-solid fa-arrow-left-long"></i>
         </Link>
         <span> Image to Pdf</span>
         <span>‎</span>
       </div>
       <div className="flex justify-between w-3/4 gap-6">
-        <div className="flex items-center justify-center w-1/2">
+        <div className="flex items-center justify-center w-1/2 text-gray-500">
           <label
             htmlFor="dropzone-file"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            className="flex flex-col items-center justify-center w-full h-full cursor-pointer  dark:hover:bg-bray-800 bg-transparent border-2 rounded-lg border-dashed p-2 box-border border-slate-800"
+            className="flex flex-col items-center justify-center w-full h-full cursor-pointer  dark:hover:bg-bray-800 bg-transparent border-2 rounded-lg border-dashed p-2 box-border border-slate-800 dark:border-white"
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               <svg
-                className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                className="w-8 h-8 mb-4 "
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -160,11 +159,11 @@ export default function Page() {
                   d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                 />
               </svg>
-              <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+              <p className="mb-2 text-sm  ">
                 <span className="font-semibold">Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs ">
                 SVG, PNG, JPG or GIF
               </p>
             </div>
@@ -179,14 +178,14 @@ export default function Page() {
             />
           </label>
         </div>
-        <div className="w-1/2 text-slate-200 flex flex-col gap-2 border-2 rounded-lg border-dashed p-2 box-border border-slate-800 overflow-auto">
-          <div className="border-b-2 border-slate-800 w-full flex justify-between p-2 overflow-auto">
+        <div className="w-1/2  flex flex-col gap-2 border-2 rounded-lg border-dashed p-2 box-border border-slate-800 overflow-auto dark:border-white">
+          <div className="border-b-2 border-slate-800 w-full flex justify-between p-2 overflow-auto dark:border-white text-black dark:text-white">
             <span>Uploaded Files:</span>
             <span
               onClick={() => {
                 setImageFiles([]);
               }}
-              className="text-slate-300 cursor-pointer"
+              className="cursor-pointer"
             >
               Clear
             </span>
@@ -200,41 +199,37 @@ export default function Page() {
           ) : (
             <></>
           )}
-          <ol type="1" className="list-decimal h-48 overflow-auto">
-            {imageFiles.map((file) => {
+          <ol type="1" className="h-48 overflow-auto list-decimal text-black dark:text-white">
+            {imageFiles.map((file, index) => {
               return (
                 <li key={file.name} id={file.name}>
-                  <button onClick={handleLinkClick}>{file.name}</button>
+                  <span className="mr-2">{index+1}.</span><button onClick={handleLinkClick}>{file.name}</button>
                 </li>
               );
             })}
           </ol>
         </div>
       </div>
-      <div className="w-3/4 flex gap-4 items-center justify-between">
-        <div className="w-1/2 flex gap-4 items-center justify-between bg-white rounded-full p-2">
-          <span className="w-28">File Name :</span>
+      <div className="w-3/4 flex gap-4 items-center justify-between text-black dark:text-white">
+        <div className="w-1/2 flex gap-4 items-center justify-between rounded-full p-2">
+          <span className="shrink-0 font-semibold text-xl">File Name :</span>
           <input
             type="text"
-            onMouseOver={() => setInit_scale(0)}
-            onMouseLeave={() => setInit_scale(1)}
-            className=" text-black h-full w-full bg-transparent outline-none "
+            className=" text-black h-full w-full bg-gray-400 py-1 px-2 rounded-2xl dark:text-white  outline-none "
             value={pdfFileName}
             onChange={(e) => setPdfFileName(e.target.value)}
           />
         </div>
         <div className="w-1/2 flex items-center justify-center">
           <button
-            className="p-2 px-8 bg-white rounded-full text-slate-700 hover:bg-pink-400 hover:text-white text-xl hover:scale-110 transition-all font-bold"
+            className="py-1 px-8 rounded-2xl bg-blue-500 text-white  text-xl hover:bg-blue-700 duration-100 flex items-center justify-center gap-2 font-bold"
             onClick={handlePdfConvert}
-            onMouseOver={() => setInit_scale(3)}
-            onMouseLeave={() => setInit_scale(1)}
           >
             Convert to pdf
+            <i className="fa-solid fa-download"></i>
           </button>
         </div>
       </div>
-      <MouseTracker def_initScale={init_scale} />
     </div>
   );
 }
