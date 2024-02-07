@@ -3,8 +3,8 @@ import '@/styles/main.css'
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-white dark:bg-[#151515] text-black dark:text-white">
-      <h1 className="text-[5vw] text-center mb-2" id="heading">PICTURE PRINT</h1>
+    <div className=" flex flex-col items-center justify-center bg-white dark:bg-[#151515] text-black dark:text-white md:py-40 py-12">
+      <h1 className="text-[10vw] text-center mb-2 md:text-[5vw]" id="heading">PICTURE PRINT</h1>
       <p className="w-2/3 text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse vitae
         animi quasi unde error, nostrum eaque porro minus inventore repudiandae

@@ -34,6 +34,7 @@ export default function ShowImage({
           src={image_url}
           loader={imageLoader}
           fill
+          quality={100}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Notfound"
           className="object-contain h-full w-full"

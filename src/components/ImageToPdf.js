@@ -3,7 +3,6 @@ import ShowImage from "@/components/ShowImage";
 import jsPDF from "jspdf";
 import Link from "next/link";
 import { useState } from "react";
-import MouseTracker from "./MouseTracker";
 
 export default function ImageToPdf() {
   const [imageFiles, setImageFiles] = useState([]);
@@ -124,19 +123,19 @@ export default function ImageToPdf() {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-evenly flex-col dark:bg-[#151515] bg-white">
-      <div className="text-blue-500 text-6xl flex items-center justify-between w-3/4 px-16 ">
+    <div className="min-h-[90vh] w-full flex items-center justify-evenly flex-col dark:bg-[#151515] bg-white py-8">
+      <div className="text-blue-500 md:text-6xl text-2xl flex items-center justify-between md:w-3/4 md:px-16 px-4 gap-8 mb-4">
         <Link
           href="/"
-          className="text-4xl hover:scale-105 transition-all"
+          className="md:text-4xl hover:scale-105 transition-all"
         >
           <i className="fa-solid fa-arrow-left-long"></i>
         </Link>
         <span> Image to Pdf</span>
         <span>‎</span>
       </div>
-      <div className="flex justify-between w-3/4 gap-6">
-        <div className="flex items-center justify-center w-1/2 text-gray-500">
+      <div className="flex justify-between md:w-3/4 gap-6 flex-col md:flex-row">
+        <div className="flex items-center justify-center md:w-1/2 text-gray-500">
           <label
             htmlFor="dropzone-file"
             onDrop={handleDrop}
@@ -178,7 +177,7 @@ export default function ImageToPdf() {
             />
           </label>
         </div>
-        <div className="w-1/2  flex flex-col gap-2 border-2 rounded-lg border-dashed p-2 box-border border-slate-800 overflow-auto dark:border-white">
+        <div className="md:w-1/2  flex flex-col gap-2 border-2 rounded-lg border-dashed p-2 box-border border-slate-800 overflow-auto dark:border-white">
           <div className="border-b-2 border-slate-800 w-full flex justify-between p-2 overflow-auto dark:border-white text-black dark:text-white">
             <span>Uploaded Files:</span>
             <span
@@ -210,19 +209,20 @@ export default function ImageToPdf() {
           </ol>
         </div>
       </div>
-      <div className="w-3/4 flex gap-4 items-center justify-between text-black dark:text-white">
-        <div className="w-1/2 flex gap-4 items-center justify-between rounded-full p-2">
-          <span className="shrink-0 font-semibold text-xl">File Name :</span>
+      <div className="w-3/4 flex gap-4 items-center justify-between text-black dark:text-white flex-col md:flex-row mt-4">
+        <div className="md:w-1/2 flex gap-4 items-center justify-between rounded-full ">
           <input
             type="text"
-            className=" text-black h-full w-full bg-gray-400 py-1 px-2 rounded-2xl dark:text-white  outline-none "
+            className=" text-black h-full w-full py-2 md:text-xl text-lg px-2 rounded-2xl outline-none placeholder:text-neutral-600 bg-gray-300 "
             value={pdfFileName}
+            placeholder="Enter Custom File Name"
             onChange={(e) => setPdfFileName(e.target.value)}
           />
         </div>
-        <div className="w-1/2 flex items-center justify-center">
+        <div className="md:w-1/2 flex items-center justify-start">
           <button
-            className="py-1 px-8 rounded-2xl bg-blue-500 text-white  text-xl hover:bg-blue-700 duration-100 flex items-center justify-center gap-2 font-bold"
+            className="py-2 px-8 rounded-2xl bg-blue-500 text-white text-xl hover:bg-blue-700 duration-100 flex items-center justify-center gap-2 font-bold disabled:bg-gray-700"
+            disabled={pdfFileName.length === 0}
             onClick={handlePdfConvert}
           >
             Convert to pdf

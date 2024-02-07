@@ -1,4 +1,3 @@
-import Script from "next/script";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.className} h-screen w-screen box-border`}>
-        <div className="sticky top-0 left-0 w-full">
+        <div className="sticky top-0 left-0 w-full z-40">
           <Navbar />
         </div>
         <div>{children}</div>
