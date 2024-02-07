@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import MouseTracker from "./MouseTracker";
 
-export default function Page() {
+export default function ImageToPdf() {
   const [imageFiles, setImageFiles] = useState([]);
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [pdfFileName, setPdfFileName] = useState("");
